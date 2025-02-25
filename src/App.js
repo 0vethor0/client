@@ -1,23 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import {useState} from 'react';
 
 function App() {
+
+  const [nombre, setNombre] = useState('');
+  const [apellido, setApellido] = useState('');
+  const [edad, setEdad] = useState(0);
+  const [correo, setCorreo] = useState(''); 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <div className="datos">
+              <label>Nombre:<input 
+                    onChange={(event) => {setNombre(event.target.value)}}
+                    type="text"/>
+              </label><br/>
+              <label>Apellido:<input 
+                    onChange={(event) => {setApellido(event.target.value)}}
+              type="text"/></label><br/>
+              <label>Edad:<input 
+                    onChange={(event) => {setEdad(event.target.value)}}
+              type="number"/></label><br/>
+              <label>Correo: <input
+                    onChange={(event) => {setCorreo(event.target.value)}}
+              type="email"/></label><br/>
+              <button>Registrar </button>
+        </div>
     </div>
   );
 }
