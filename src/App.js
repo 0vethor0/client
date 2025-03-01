@@ -1,6 +1,7 @@
 import './App.css';
 import { useState } from 'react';
 import Axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
 
@@ -47,7 +48,7 @@ return (
             <label>Status: <input 
                   onChange={(event)=> {setStatus(event.target.value)}}
             type="text"/></label><br/>
-            <button onClick={mostrarDatos}>Registrar </button>
+            <button className= 'btn btn-success' onClick={mostrarDatos}>Registrar </button>
       </div>
       <div className="lista">
             <button onClick={getDatos}>Mostrar Lista</button>
