@@ -1,6 +1,6 @@
 {
   "name": "client",
-  "homepage": "https://0vethor0.github.io/client/build",
+  "homepage": "https://0vethor0.github.io/client/src",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
