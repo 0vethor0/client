@@ -15,16 +15,23 @@ const [id, setId] = useState(0);
 const [personasList, setPersonasList] = useState([]);
 
 const mostrarDatos=()=>{//funcion para insertar datos
-      Axios.post("http://localhost:3001/create", {
-      nombre: nombre,
-      apellido: apellido,
-      edad: edad,
-      correo: correo,
-      status: stauts
-      }).then(()=>{
-      alert("Datos insertados");
-      LimpiarCampos();
-      });
+
+
+      try {
+            Axios.post("http://localhost:3001/create", {
+                  nombre: nombre,
+                  apellido: apellido,
+                  edad: edad,
+                  correo: correo,
+                  status: stauts
+                  }).then(()=>{
+                  alert("Datos insertados");
+                  LimpiarCampos();
+                  });
+      } catch (error) {
+            console.log(error);
+            
+      }
 }
 const update=()=>{
       Axios.put("http://localhost:3001/actualizar", {
@@ -40,6 +47,22 @@ const update=()=>{
       LimpiarCampos();
       });
 }
+
+const eliminarDatos = (id) => {
+      if (window.confirm("¿Está seguro que desea eliminar este registro?")) {
+            Axios.delete(`http://localhost:3001/eliminar/${id}`)
+            .then(() => {
+                  getDatos();
+                  alert("Datos eliminados");
+            })
+            .catch(error => {
+                  console.error('Error al eliminar los datos:', error);
+                  alert("Hubo un error al eliminar los datos");
+            });
+      } else {
+            alert("Acción de eliminación cancelada");
+      }
+}	
 
 const LimpiarCampos=(id)=>{
       setNombre("");
@@ -69,7 +92,7 @@ const getDatos=()=>{
             //console.log(response.data);
       })
       .catch(error => {
-      console.error('Error al realizar la solicitud:', error);
+      console.error('Error en getDatos al realizar la solicitud:', error);
       });
 
       //Axios.get("http://localhost:3001/personas")
@@ -167,7 +190,7 @@ return (
                                                       }}
                                                 className='btn btn-warning'>Editar</button>
                                                 <button type='button'
-
+                                                onClick={()=>{eliminarDatos(val.id)}}
                                                 className='btn btn-danger'>Eliminar</button>
                                                 </div>
                                           </td>
